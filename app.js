@@ -24,7 +24,7 @@ require('./config/passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/userroutes');
-
+var user = require('./routes/userpwdroutes');
 var conferences=require('./routes/conferenceroutes');
 var papers=require('./routes/paperroutes');
 
@@ -46,7 +46,7 @@ app.use(passport.initialize());
 
 app.use('/', routes);
 app.use('/', users);
-
+app.use('/',user);
 app.use('/',conferences);
 app.use('/',papers);
 

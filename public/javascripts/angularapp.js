@@ -177,6 +177,39 @@ angular.module('tango', [
           }
         }
     })
+	.state('home.editpassword',{
+        templateUrl:'pages/editpassword.html',
+        url:'/editPassword',
+        controller:'UserspwdCtrl',
+           resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'tango',
+              files:[
+               'javascripts/Userpwdapp.js'
+              
+              ]
+            })
+          }
+        }
+    })
+	.state('register',{
+        templateUrl:'pages/register.html',
+        url:'/register',
+        controller:'AuthCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'tango',
+              files:[
+              
+              'javascripts/angularapp.js',
+              'javascripts/auth.js'
+              ]
+            })
+          }
+        }
+    })
       .state('login',{
         templateUrl:'pages/login.html',
         url:'/login',

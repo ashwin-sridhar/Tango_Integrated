@@ -51,10 +51,10 @@ router.put('/updateuserdata/:userid',function(req,res,next){
         if(req.body.lastname!=null)
         users.lastname=req.body.lastname;
         if(req.body.organization!=null)
-        users.orgnaization=req.body.organization
-    if(req.body.mob!=null)
+        users.organization=req.body.organization;
+		if(req.body.mob!=null)
         users.mob=req.body.mob;
-    if(req.body.email!=null)
+		if(req.body.email!=null)
         users.email=req.body.email;
       
 

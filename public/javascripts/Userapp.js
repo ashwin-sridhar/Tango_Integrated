@@ -40,7 +40,7 @@
   $scope.userdata = {};
 
         // when landing on the page, get all todos and show them
-      Users.searchById(auth.currentUserid()).success(function(data) {
+      Users.searchById(auth.currentUserIid()).success(function(data) {
                         $scope.users = data;
                 })
                 .error(function(data) {
@@ -49,7 +49,7 @@
         
         
   $scope.updateUserdata = function(id) {
-      Users.updateUserdata(auth.currentUserid(),$scope.userdata).error(function(error) {
+      Users.updateUserdata(auth.currentUserIid(),$scope.userdata).error(function(error) {
                       $scope.error = error;
                  }).then(function(){
             $state.go('home');
@@ -57,7 +57,7 @@
         };
     
   $scope.deleteuser = function(id) {
-      Users.deleteuser(auth.currentUserid()).success(function() {
+      Users.deleteuser(auth.currentUserIid()).success(function() {
                                 $state.go('login');
                         })
                        

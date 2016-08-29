@@ -1,0 +1,93 @@
+var express = require('express');
+var router = express.Router();
+var mongoose= require('mongoose');
+
+var Conference=mongoose.model('Conference');
+
+
+//To create a conference. Won't be called from Angular side yet.[Extensible for bonus feature]
+router.post('/createConf',function(req,res,next){
+	
+	var conf=new Conference();
+	conf.confTitle="Test Conference";
+	conf.confDesc="Hope this works!";
+	conf.chairPerson="5721e043e44b1fd41010c220";
+	conf.initialDeadline=null;
+	conf.finalDeadline=null;
+	
+	
+
+	conf.save(function(err){
+		if(err){return next(err);}
+		return res.json({endresult:'success'})
+
+		
+	});
+
+});
+
+//Retrieves all conference documents
+router.get('/gatherConfData',function(req,res){
+
+	Conference.find(function(err,conferences){
+    if(err){ return next(err); }
+
+    	res.json(conferences);
+
+  });
+	
+});
+
+
+//retrieves conference document based on the confid passed in the url
+router.get('/getconfdata/:confid',function(req,res){
+
+	console.log(req.params.confid);
+
+	/*Conference.findById(req.params.confid, function(err, conferences) {
+    
+        if(err){ return (err); }
+     		
+  		res.json(conferences);
+  		})*/
+    Conference.findById(req.params.confid).populate('chairPerson').exec(function(err,conferences){
+      if(err){return (err);}
+      console.log(conferences);
+      res.json(conferences);
+    }) 
+
+
+});
+
+//updates the conference document with the data that are updated against the confid passed in the URL
+router.put('/updateconfdata/:confid',function(req,res,next){
+
+	Conference.findById(req.params.confid, function(err, conference) {
+
+        if(err){ return next(err); }
+
+        //Conditions to ensure only changed data is updated so as to avoid null/wrong updates
+        if(req.body.confTitle!=null)
+        conference.confTitle=req.body.confTitle;
+        if(req.body.initialDeadline!=null)
+        conference.initialDeadline=req.body.initialDeadline;
+        if(req.body.finalDeadline!=null)
+        conference.finalDeadline=req.body.finalDeadline;
+        if(req.body.chair!=null)
+        conference.chairPerson.push(req.body.chair._id);
+
+
+  		conference.save(function(err){
+  			if(err)
+  				res.send(err);
+  			res.json("Conference details updated");
+  		})
+
+    	
+
+  	});
+
+});
+              
+  
+module.exports = router;

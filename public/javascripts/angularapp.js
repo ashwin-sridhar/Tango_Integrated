@@ -319,6 +319,127 @@ angular.module('tango', [
    })
 
   //Rohit'part ends
+  //Srini's part starts
+  .state('home.listAssignedSubs',{
+        templateUrl:'pages/listAssignedSubs_r.html',
+        url:'/listAssignedSubs',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+              
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+
+      .state('home.viewSubForReview',{
+        templateUrl:'pages/viewSubForReview_r.html',
+        url:'/viewSubForReview',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+              
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+
+      .state('home.createReview',{
+        templateUrl:'pages/createReview_r.html',
+        url:'/createReview',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+
+      .state('home.listMyReviews',{
+        templateUrl:'pages/listMyReviews_r.html',
+        url:'/listMyReviews',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+
+      .state('home.viewReview',{
+        templateUrl:'pages/viewReview_r.html',
+        url:'/viewReview',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+
+      .state('home.editReview',{
+        templateUrl:'pages/editReview_r.html',
+        url:'/editReview',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+  //Srini's part ends
            
      
      

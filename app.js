@@ -15,6 +15,7 @@ require('./models/Users');
 
 require('./models/Conferences');
 require('./models/Papers');
+require('./models/Reviews');
 
 mongoose.connect('mongodb://localhost/romeodb');
 
@@ -23,10 +24,11 @@ var passport=require('passport');
 require('./config/passport');
 
 var routes = require('./routes/index');
-var users = require('./routes/userroutes');
-var user = require('./routes/userpwdroutes');
-var conferences=require('./routes/conferenceroutes');
-var papers=require('./routes/paperroutes');
+var userroutes = require('./routes/userroutes');
+var userpwdroutes = require('./routes/userpwdroutes');
+var confroutes=require('./routes/conferenceroutes');
+var paperroutes=require('./routes/paperroutes');
+var reviewRoutes = require('./routes/reviews_r');
 
 
 
@@ -45,11 +47,11 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(passport.initialize());
 
 app.use('/', routes);
-app.use('/', users);
-app.use('/',user);
-app.use('/',conferences);
-app.use('/',papers);
-
+app.use('/', userroutes);
+app.use('/',userpwdroutes);
+app.use('/',confroutes);
+app.use('/',paperroutes);
+app.use('/', reviewRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

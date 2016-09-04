@@ -41,7 +41,7 @@ var gfs = new Grid(mongoose.connection.db);
                 var j = 0;
                 for (var i = 0; i < papers.length; i++)
                     {
-                        if(papers[i].reviewer[0]._id == req.params.reviewer_id)
+                        if(papers[i].reviewer._id == req.params.reviewer_id)
                             {
                                 papers_to_review[j++] = papers[i];
                             }

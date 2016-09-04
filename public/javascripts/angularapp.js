@@ -23,7 +23,7 @@ angular.module('tango', [
     });
 
     $urlRouterProvider.otherwise('/login');
-
+    //Ashwin's part starts
     $stateProvider
       .state('home', {
         url:'/home',
@@ -47,6 +47,13 @@ angular.module('tango', [
                    files:["bower_components/angular-toggle-switch/angular-toggle-switch.min.js",
                           "bower_components/angular-toggle-switch/angular-toggle-switch.css"
                       ]
+                }),
+                $ocLazyLoad.load(
+                {
+                  name:'ngFileUpload',
+                  files:["bower_components/ng-file-upload/ng-file-upload.js",
+                         "bower_components/ng-file-upload/ng-file-upload.min.js",
+                         "bower_components/ng-file-upload/ng-file-upload-shim.min.js"]
                 }),
                 $ocLazyLoad.load(
                 {
@@ -123,15 +130,18 @@ angular.module('tango', [
  
      .state('home.papers',{
        templateUrl:'pages/manpapers.html',
-       controller:'PaperCtrl',
+       controller:'PapersCtrl',
        url:'/managePapers',
        resolve:{
         loadMyFiles:function($ocLazyLoad){
           return $ocLazyLoad.load({
-            name:'tango',
+            name:'papersModule',
             files:[
             'javascripts/papersapp.js',
             'javascripts/Userapp.js',
+            'javascripts/auth.js',
+            'javascripts/autocomplete/autocomp.js',
+            'javascripts/autocomplete/autocomplete.js'
 
             ]
 
@@ -140,14 +150,13 @@ angular.module('tango', [
        }
                      
    })
-
+//Ashwin's part ends
      
 
    .state('home.authors',{
      templateUrl:'pages/viewauthors.html',
      url:'/viewauthors'
  })
-
      .state('home.reviewers',{
        templateUrl:'pages/viewreviewers.html',
        url:'/viewreviewers'
@@ -156,10 +165,8 @@ angular.module('tango', [
        templateUrl:'pages/tempmodal.html',
        url:'/viewreviews'
    })
-      .state('home.createtask',{
-        templateUrl:'pages/createTask.html',
-        url:'/createTask'
-    })
+  
+  //Preethi's part starts
       .state('home.editprofile',{
         templateUrl:'pages/editprofile.html',
         url:'/editProfile',
@@ -167,7 +174,7 @@ angular.module('tango', [
            resolve: {
           loadMyFiles:function($ocLazyLoad) {
             return $ocLazyLoad.load({
-              name:'tango',
+              name:'userModule',
               files:[
               
               'javascripts/Userapp.js'
@@ -184,7 +191,7 @@ angular.module('tango', [
            resolve: {
           loadMyFiles:function($ocLazyLoad) {
             return $ocLazyLoad.load({
-              name:'tango',
+              name:'userModule',
               files:[
                'javascripts/Userpwdapp.js'
               
@@ -227,6 +234,91 @@ angular.module('tango', [
           }
         }
     })
+//Preethi's part ends      
+
+    //Rohit's part starts
+    .state('home.createSub',{
+       templateUrl:'pages/createSub.html',
+       url:'/createSub',
+       controller:'PapersCtrl',
+       resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'papersModule',
+              files:[
+              'javascripts/main.js',
+              'javascripts/papersapp.js',
+              'javascripts/autocomplete/autocomplete.js',
+              'javascripts/autocomplete/autocomp.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js'
+              ]
+            })
+          }
+        }
+   })
+
+      .state('home.listMySubs',{
+       templateUrl:'pages/listMySubs.html',
+       url:'/listMySubs',
+       controller:'PapersCtrl',
+       resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'papersModule',
+              files:[
+              'javascripts/main.js',
+              'javascripts/papersapp.js'
+              ]
+            })
+          }
+        }
+   })
+
+      .state('home.authorProfile',{
+       templateUrl:'pages/authorProfile.html',
+       url:'/authorProfile'
+   })
+
+      .state('home.viewSub',{
+       templateUrl:'pages/viewSub.html',
+       url:'/viewSub',
+       controller:'PapersCtrl',
+       resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'papersModule',
+              files:[
+              'javascripts/main.js',
+              'javascripts/papersapp.js'
+              ]
+            })
+          }
+        }
+   })
+
+       .state('home.editSub',{
+       templateUrl:'pages/editSub.html',
+       url:'/editSub',
+       controller:'PapersCtrl',
+       resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'papersModule',
+              files:[
+              'javascripts/main.js',
+              'javascripts/papersapp.js',
+              'javascripts/autocomplete/autocomplete.js',
+              'javascripts/autocomplete/autocomp.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js'
+              ]
+            })
+          }
+        }
+   })
+
+  //Rohit'part ends
            
      
      

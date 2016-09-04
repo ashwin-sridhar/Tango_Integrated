@@ -6,7 +6,7 @@
  * # MainCtrl
  * Controller of the Agileromeo app
  */
- var app = angular.module('tango',[]);
+ var app = angular.module('userModule',['tango']);
  // angular.module('tango',[])
  app.factory('Userspwd', function($http){
    return {

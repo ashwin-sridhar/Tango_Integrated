@@ -20,7 +20,7 @@
                             <tr>
                                 <th>Paper title</th>
                                 <th>Status</th>
-                                <th>Author</th>
+                                <th>Authors</th>
                                 <th>Reviewer</th>
                                 <th></th>
                                 <th></th>
@@ -33,9 +33,9 @@
                                
                                 <td>{{pap.title}}</td>
                                 <td>{{pap.status}}</td>
-                                <td>{{pap.paperAuthors._id}}</td>
-                                <td><input class="form-control" name="reviewer" placeholder="{{pap.reviewer[0].username}}" ng-model="assignData.userid" typeahead="user as user.username for user in userList | filter:$viewValue | limitTo:3" /></td>
-                                <td><button ng-click="assignReviewer(pap._id)">Set/Mod Reviewer</button></td>
+                                <td><p ng-repeat="auth in pap.authors">{{auth.username}}</p></td>
+                                <td><input class="form-control" name="reviewer" placeholder="{{pap.reviewer[0].username}}" ng-model="pap.userid" typeahead="user as user.username for user in possibleReviewers | filter:$viewValue | limitTo:3" /></td>
+                                <td><button ng-click="assignReviewer(pap)">Set/Mod Reviewer</button></td>
                                 <td><button ng-click="deletePaper(pap._id)">Withdraw paper</button></td>
                                 
 

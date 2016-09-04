@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 
 var app = express();
-
+_ = require('lodash');
 var mongoose= require('mongoose');
 
 require('./models/Users');

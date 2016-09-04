@@ -8,8 +8,12 @@ var bodyParser = require('body-parser');
 
 
 var app = express();
+
+var mongoose= require('mongoose'),
 _ = require('lodash');
-var mongoose= require('mongoose');
+
+busboyBodyParser = require('busboy-body-parser'),
+app.use(busboyBodyParser());
 
 require('./models/Users');
 

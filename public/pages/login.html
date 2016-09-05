@@ -1,5 +1,6 @@
  
 
+  <script src='https://code.angularjs.org/1.4.3/angular-messages.js'></script> 
   <div class="login-branding" height="30px"><button type="button" class="btn btn-primary btn-lg btn-block btn-success">Conference Management</button></div>
 
 
@@ -14,13 +15,13 @@
                 </div>
                 <div class="panel-body">
 
-                    <form role="form" ng-submit="login()">
+                    <form name="Loginform" role="form" ng-submit="login()">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Username" name="username" ng-model="user.username" type="text" autofocus>
+                                <input class="form-control" required placeholder="Username" name="username" ng-model="user.username" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" ng-model="user.password" value="">
+                                <input class="form-control" required placeholder="Password" name="password" type="password" ng-model="user.password" value="">
                             </div>
 							<!-- Change this to a button or input when using this as a form -->
                             <button type="submit" class="btn btn-primary">Login</button>
@@ -30,6 +31,9 @@
 							</a>
                             <!-- <a ui-sref="home.dashboard" class="btn btn-lg btn-success btn-block">Sign in</a> -->
                         </fieldset>
+						<span ng-bind="error" style="color:red"></span>
+						<div ng-messages = "Loginform.username.$error" || "Loginform.password.$error" role="alert">
+						</div>
                     </form>
                 </div>
             </div>

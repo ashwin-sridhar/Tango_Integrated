@@ -1,4 +1,4 @@
-   
+<script src='https://code.angularjs.org/1.4.3/angular-messages.js'></script>    
 <div class="login-branding" height="30px"><button type="button" class="btn btn-primary btn-lg btn-block btn-success">Conference Management</button></div>
 <div class="row">
    <div class="col-md-4 col-md-offset-4">
@@ -8,23 +8,24 @@
                 </div>
                     
                 <div class="panel-body">
-                    <form role="form" ng-submit="register()">
+                    <form name="Registerform" role="form" ng-submit="register()">
                         <fieldset>
                             
                             <div class="form-group">
-                                <input class="form-control" placeholder="First Name" name="firstname" type="text" ng-model="user.firstname" autofocus>
+                                <input class="form-control" placeholder="First Name" name="firstname" type="text" ng-model="user.firstname" autofocus required>
                             </div>
 							<div class="form-group">
-                                <input class="form-control" placeholder="Last Name" name="lastname" type="text" ng-model="user.lastname" autofocus>
+                                <input class="form-control" placeholder="Last Name" name="lastname" type="text" ng-model="user.lastname" autofocus required>
                             </div>
 							<div class="form-group">
-                                <input class="form-control" placeholder="Contact Number" name="mob" type="text" ng-model="user.mob" autofocus>
+                                <input class="form-control" placeholder="Contact Number" name="mob" type="text" ng-model="user.mob" autofocus required>
                             </div>
 							<div class="form-group">
-                                <input class="form-control" placeholder="Email" name="email" type="text" ng-model="user.email" autofocus>
+                                <input class="form-control" placeholder="Email" name="email" type="text" ng-model="user.email" autofocus required>
+								<p> eg:test@test.com </p>
                             </div>
 							<div class="form-group">
-                                <input class="form-control" placeholder="Organization" name="organization" type="text" ng-model="user.organization" autofocus>
+                                <input class="form-control" placeholder="Organization" name="organization" type="text" ng-model="user.organization" autofocus required>
                             </div>
 							<div class="form-group">
                                 <label>
@@ -33,8 +34,9 @@
 								</label>
 							</div>
 							<div class="form-group">
-                                <input class="form-control" placeholder="User Name" name="username" type="text" ng-model="user.username" autofocus>
+                                <input class="form-control" placeholder="User Name" name="username" type="text" ng-model="user.username" autofocus required>
                             </div>
+							<span ng-bind="error" style="color:red"></span>
 							<div class="form-group">
                                 <input class="form-control" placeholder="Create Password" name="createpassword" type="password" value="" ng-model="user.password">
                             </div>
@@ -44,7 +46,11 @@
                             <!-- Change this to a button or input when using this as a form -->
                             <button type="submit" class="btn btn-primary">Register</button>
                             <!-- <a ui-sref="dashboard.home" class="btn btn-lg btn-success btn-block">Register</a> -->
+							
                         </fieldset>
+						<div ng-messages = "Registerform.firstname.$error" || "Registerform.lastname.$error" || "Registerform.mob.$error" || "Registerform.email.$error"
+						|| "Registerform.organization.$error" || "Registerform.username.$error" || "Registerform.password.$error" role="alert">
+						</div>
                     </form>
                 </div>
             

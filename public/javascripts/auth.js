@@ -86,14 +86,14 @@ angular.module('tango').controller('AuthCtrl', ['$scope','$state','auth', functi
 	$scope.user={};
 	$scope.register=function(){
 		auth.register($scope.user).error(function(error){
-		$scope.error=error;
+		$scope.error="Username already exists";
 	}).then(function(){
 		$state.go('home');
 	});
 	};
 	$scope.login=function(){
 		auth.logIn($scope.user).error(function(error){
-			$scope.error=error;
+			$scope.error="Enter Correct Details";
 		}).then(function(data){
       //$cookies.put("UID","iihgiehgui");
       $state.go('home');

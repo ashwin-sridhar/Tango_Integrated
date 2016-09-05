@@ -26,17 +26,25 @@
   
   $scope.formData = {};
   $scope.userdata = {};
-
+  $scope.passwordcheck=false;
       		
-				
+	
   $scope.updateUserpassword = function(id) {
+    
+    if($scope.userdata.repeatpassword==$scope.userdata.password){
+
       Userspwd.updateUserpassword(auth.currentUserIid(),$scope.userdata).error(function(error) {
                       $scope.error = error;
                  }).then(function(){
 					  $state.go('login');
 				});
         };
-		
+    $scope.passwordcheck=true;
+    console.log($scope.passwordcheck);
+    $state.go('home.editpassword');
+   
+ 
+	}
   
 
 }]);

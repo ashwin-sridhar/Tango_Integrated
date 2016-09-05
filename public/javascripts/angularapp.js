@@ -268,7 +268,11 @@ angular.module('tango', [
               name:'papersModule',
               files:[
               'javascripts/main.js',
-              'javascripts/papersapp.js'
+              'javascripts/papersapp.js',
+              'javascripts/autocomplete/autocomplete.js',
+              'javascripts/autocomplete/autocomp.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js'
               ]
             })
           }
@@ -290,7 +294,11 @@ angular.module('tango', [
               name:'papersModule',
               files:[
               'javascripts/main.js',
-              'javascripts/papersapp.js'
+              'javascripts/papersapp.js',
+              'javascripts/autocomplete/autocomplete.js',
+              'javascripts/autocomplete/autocomp.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js'
               ]
             })
           }

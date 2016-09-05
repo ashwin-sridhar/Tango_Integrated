@@ -88,6 +88,24 @@ router.put('/updateconfdata/:confid',function(req,res,next){
   	});
 
 });
+
+  router.get('/checkConForchair/:userid',function(req,res){
+
+  console.log(req.params.userid);
+
+    Conference.find({chairPerson:req.params.userid},function(err,conferences){
+        if(err)
+            return err;
+        //confsOwned=count;
+        //console.log("Count of Accepted is"+confsOwned);
+        return res.json(conferences);
+    });
+
+    
+
+});
+
+
               
   
 module.exports = router;

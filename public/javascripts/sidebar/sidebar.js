@@ -8,14 +8,23 @@
  */
 
 angular.module('tango')
-  .directive('sidebar',['$location',function() {
+  .directive('sidebar',['$location','$http','auth',function() {
     return {
       templateUrl:'javascripts/sidebar/sidebar.html',
       restrict: 'E',
       replace: true,
       scope: {
       },
-      controller:function($scope){
+      controller:function($scope,$http,auth){
+        var loggedInUser=auth.currentUserID();
+        console.log(loggedInUser); 
+        $scope.isChairman=false;
+        console.log("Before call"+$scope.isChairman);
+        $http.get('/checkConForchair/'+loggedInUser).success(function(data){
+            if(data.length>0)
+              $scope.isChairman=true;
+            console.log("Cha");
+        });
         $scope.selectedMenu = 'dashboard';
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;

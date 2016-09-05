@@ -120,6 +120,16 @@
             return temp;
         };
 
+        $scope.saveAndGoToNextState = function(sub) {
+            if(sub.status == 'Accepted' || sub.status == 'Rejected'){
+                // already reviewed
+                $state.go('home.listMyReviews');
+            }else{
+                $scope.saveObject(sub);
+                $state.go('home.viewSubForReview');
+            }
+        };
+
         $scope.globalErrFlag = false;
 
         $scope.prepCreateReview = function(){

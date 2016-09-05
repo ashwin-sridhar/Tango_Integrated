@@ -54,7 +54,7 @@
                 $http.post('/api/reviews', $scope.reviewData)
                         .success(function(data) {
                                 $scope.currReview = data;
-                                $state.go('home.listAssignedSubs');
+                                $state.go('home.listMyReviews');
                         })
                         .error(function(data) {
                                 console.log('Error: ' + data);
@@ -102,7 +102,7 @@
 
         $scope.prepCreateReview = function(){
 
-            $scope.reviewData.forSubmission = $scope.getPaper();
+            $scope.reviewData.forSubmission = $scope.getObject();
             
             Users.searchById(currUserID)
                 .success(function(data) {

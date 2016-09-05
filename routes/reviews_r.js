@@ -28,62 +28,16 @@ var gfs = new Grid(mongoose.connection.db);
 
     router.get('/api/assignedsubs/:reviewer_id', function(req, res) {
 
-        Paper.find()
+        Paper.find({reviewer: req.params.reviewer_id})
         .populate('authors reviewer')
         .exec(function(err, papers)
         {
             if (err)
                 res.send(err)
 
-            if(typeof papers != 'undefined')
-            {
-                var papers_to_review = [];
-                var j = 0;
-                for (var i = 0; i < papers.length; i++)
-                    {
-                        if(papers[i].reviewer._id == req.params.reviewer_id)
-                            {
-                                papers_to_review[j++] = papers[i];
-                            }
-                    }
-            }
-
-            res.json(papers_to_review);
+            res.json(papers);
         });       
     });
-
-    // smarter way that doesn't work
-
-    // router.get('/api/assignedsubs/:reviewer_id', function(req, res) {
-
-    //     Paper.find()
-    //     .populate({
-    //         path: 'reviewer',
-    //         match: { _id: { $eq: req.params.reviewer_id}}
-    //         // match returns all papers but populates only the authors which contain passed author_id
-    //     })
-    //     .exec(function(err, papers)
-    //     {
-    //         if (err)
-    //             res.send(err)
-
-    //         // if(typeof papers != 'undefined')
-    //         // {
-    //         //     var papers_to_review = [];
-    //         //     var j = 0;
-    //         //     for (var i = 0; i < papers.length; i++)
-    //         //         {
-    //         //             if (papers[i].authors.length != 0)
-    //         //                 papers_to_review[j++] = papers[i];
-    //         //         }
-    //         // }
-
-    //         res.json(papers);
-    //     });       
-    // });
-
-
-
 
 	router.post('/api/reviews', function(req, res) {
 
@@ -116,17 +70,6 @@ var gfs = new Grid(mongoose.connection.db);
         {
             if (err)
                 res.send(err)
-
-            // if(typeof reviews != 'undefined')
-            // {
-            //     var myreviews = [];
-            //     var j = 0;
-            //     for (var i = 0; i < reviews.length; i++)
-            //         {
-            //             if (reviews[i].reviewer != null)
-            //                 myreviews[j++] = reviews[i];
-            //         }
-            // }
 
             res.json(reviews);
         });       

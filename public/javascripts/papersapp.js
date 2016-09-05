@@ -142,6 +142,7 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
                         .success(function(data) {
                                 $scope.deleteFile(id);
                                 console.log('Success!');
+                                $state.go('home.listMySubs');
                         })
                         .error(function(data) {
                                 console.log('Error: ' + data);

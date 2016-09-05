@@ -254,7 +254,37 @@ router.delete('/api/deletefile/:paper_id', function(req, res) {
                 res.send("Author cannot be reviewer");
             }
         });
-    });   
+    });
+        var complete,accepted,rejected;
+    router.get('/api/paperstats', function(req, res, next) {
+        
+    Paper.count({status:{$eq:'Completed'}},function(err,count){
+        if(err)
+            return err;
+        complete=count;
+        console.log("Count of Complete is"+count);
+        
+    });
+     Paper.count({status:{$eq:'Accepted'}},function(err,count){
+        if(err)
+            return err;
+        accepted=count;
+        console.log("Count of Accepted is"+count);
+        
+    });
+      Paper.count({status:{$eq:'Rejected'}},function(err,count){
+        if(err)
+            return err;
+        rejected=count;
+        console.log("Count of Rejected is"+count);
+        
+    });
+   
+     // console.log(complete);
+   return res.json({Completed:complete,Accepted:accepted,Rejected:rejected});
+        
+
+});   
     //as28tuge code ends
 
 module.exports = router;

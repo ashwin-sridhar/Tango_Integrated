@@ -7,63 +7,28 @@
  * Controller for the pie chart on Conference Dashboard
  */
 angular.module('tango')
-  .controller('ChartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-    $scope.line = {
-	    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-	    series: ['Series A', 'Series B'],
-	    data: [
-	      [65, 59, 80, 81, 56, 55, 40],
-	      [28, 48, 40, 19, 86, 27, 90]
-	    ],
-	    onClick: function (points, evt) {
-	      console.log(points, evt);
-	    }
-    };
-
-    $scope.bar = {
-	    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-		series: ['Series A', 'Series B'],
-
-		data: [
-		   [65, 59, 80, 81, 56, 55, 40],
-		   [28, 48, 40, 19, 86, 27, 90]
-		]
-    	
-    };
-
-    $scope.donut = {
-    	labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
-    	data: [300, 500, 100]
-    };
-
-    $scope.radar = {
-    	labels:["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-
-    	data:[
-    	    [65, 59, 90, 81, 56, 55, 40],
-    	    [28, 48, 40, 19, 96, 27, 100]
-    	]
-    };
-
+  .controller('ChartCtrl', ['$scope','$timeout','$http', function ($scope,$timeout,$http) {
+    
     $scope.pie = {
-    	labels : ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
-    	data : [300, 500, 100]
+        labels :['Completed Papers','Accepted Papers','Rejected Papers'],
+        data:[]
     };
+    $http.get('/api/paperstats').success(function(data){
+      $scope.pie.data.push(data.Completed);
+      $scope.pie.data.push(data.Accepted);
+      $scope.pie.data.push(data.Rejected);
+       console.log($scope.pie);
+    }).error(function(data) {
+                        console.log('Error: ' + data);
+                });
 
-    $scope.polar = {
-    	labels : ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"],
-    	data : [300, 500, 100, 40, 120]
+    
+/* In case donut looks better than pie
+    $scope.donut = {
+        labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
+        data: [300, 500, 100]
     };
+  */
 
-    $scope.dynamic = {
-    	labels : ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"],
-    	data : [300, 500, 100, 40, 120],
-    	type : 'PolarArea',
-
-    	toggle : function () 
-    	{
-    		this.type = this.type === 'PolarArea' ?
-    	    'Pie' : 'PolarArea';
-		}
-    };
+  
 }]);

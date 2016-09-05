@@ -1,28 +1,26 @@
 <div>
-	<form role="form" ng-submit="updateConfdata()" >
+    <form role="form" ng-submit="updateConfdata()" >
             <div class="form-group">
                 <label>Conference name</label>
                 <input class="form-control" name="confTitle" placeholder="{{conference.confTitle}}" ng-model="confdata.confTitle" />
                 <p class="help-block">Give a title for the Conference</p>
             </div>
             <div class="form-group">
-            	<label>Initial deadline</label>
-                <input  class="form-control" type="date" name="initialDeadline" ng-model="confdata.initialDeadline" value="{{conference.initialDate|date:'medium'}}" />
+                <label>Initial deadline</label>
+                <input  class="form-control" type="date" name="initialDeadline" ng-model="confdata.initialDeadline"/>
+                <p class="help-block">Currently this is set as {{conference.initialDeadline|date:'medium'}}</p>
             </div>
             <div class="form-group">
                 <label>Final deadline</label>
-                <input  class="form-control" type="date" name="finalDeadline" ng-model="confdata.finalDeadline"  />
+                <input  class="form-control" type="date" name="finalDeadline" ng-model="confdata.finalDeadline" />
+                <p class="help-block">Currently this is set as {{conference.finalDeadline|date:'medium'}}</p>
             </div>
             <div class="form-group">
                 <label>Chairpersons</label>
                 <ul ng-repeat="cp in conference.chairPerson">
                     <li>{{cp.username}}</li>
                 </ul>
-                <label>Possible chairpersons</label>
-                <ul ng-repeat="pc in possiblechairs">
-                    <li>{{pc.username}}</li>
-                </ul>
-
+                
                 <input class="form-control" name="chair" placeholder="Enter registered usernames here" ng-model="confdata.chair" typeahead="user as user.username for user in possiblechairs | filter:$viewValue | limitTo:3" />                
 
                  
@@ -31,7 +29,7 @@
                 <button type="submit" class="btn btn-default">Save Changes</button>
                 <button type="reset" class="btn btn-default">Reset</button>
                             
-	</form>
+    </form>
 </div>
 
        

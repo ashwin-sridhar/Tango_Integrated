@@ -39,6 +39,23 @@ var gfs = new Grid(mongoose.connection.db);
         });       
     });
 
+    router.put('/api/paperstatus/:paper_id', function(req, res){
+        Paper.findById(req.params.paper_id, function(err, paper) {
+            if (err)
+                res.send(err);
+
+            paper.status = req.body.paperStatus;
+
+            // Save the paper and check for errors
+            paper.save(function(err) {
+                if (err)
+                    res.send(err);
+
+                return res.status(200).send({message: 'Success!'});
+            });
+        });
+    });
+
 	router.post('/api/reviews', function(req, res) {
 
         Review.create({

@@ -26,15 +26,16 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- <form role="form"> -->
-                        <form name="CreateReviewForm" method="post" role="form" ng-controller="ReviewsCtrl" ng-init="sub=getObject();" novalidate> <!-- class="form-horizontal" -->
+                        <form name="CreateReviewForm" method="post" role="form" ng-controller="ReviewsCtrl" ng-init="reviewData.forSubmission=getObject();" novalidate> <!-- class="form-horizontal" -->
 
-                            <label>Review for Paper:</label>
+                            <label>Review for Paper</label>
                             <br>
-                            {{sub.title}}
+                            {{reviewData.forSubmission.title}}
                             <br><br>
 
-                            <div class="form-group">
-                                <label>Reviewer Expertise:</label>
+                            <div class="panel panel-default form-group">
+                                <div class="panel-body">
+                                <label>Reviewer Expertise*</label>
                                 <br>
                                     <div class="radio">
                                     <label>
@@ -62,9 +63,11 @@
                                     </label>
                                 </div>                                
                             </div>
+                            </div>
 
-                            <div class="form-group">
-                                <label>Overall Evaluation:</label>
+                             <div class="panel panel-default form-group">
+                                <div class="panel-body">
+                                <label>Overall Evaluation*</label>
                                 <br>
                                     <div class="radio">
                                     <label>
@@ -92,6 +95,7 @@
                                     </label>
                                 </div>
                             </div>
+                            </div>
 
 
                             <div class="form-group">
@@ -114,7 +118,27 @@
                                 <textarea class="form-control" ng-model="reviewData.detailedComments" rows="3"></textarea>
                             </div>
 
-                            <button type="submit" name="submitBtn" class="btn btn-default" ng-disabled="CreateReviewForm.$invalid" ng-click="prepCreateReview();"> 
+                            <div class="panel panel-default form-group">
+                                <div class="panel-heading">
+                                    <label>Decision*</label>
+                                </div>
+                                <div class="panel-body">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="paperStatus" value="Accepted" ng-model="reviewData.forSubmission.status" required>Accept
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="paperStatus" value="Rejected" ng-model="reviewData.forSubmission.status" required>Reject
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+
+                            <p ng-show="globalErrFlag" class="help-block" style="color:maroon">Please enter all the required* fields.</p>
+
+                            <button type="submit" name="submitBtn" class="btn btn-default" ng-click="prepCreateReview();"> <!-- ng-disabled="CreateReviewForm.$invalid" -->
                             <!-- ui-sref="home.listMySubs" -->
                                 Submit
                             </button>

@@ -50,10 +50,26 @@
                         });
         };
 
+        $scope.updatePaperStatus = function(paper_id,paperStatusObj) {
+                $http.put('/api/paperstatus/' + paper_id, paperStatusObj)
+                        .success(function(data) {
+                                //$scope.sub = data;
+                                console.log('Success!');
+                        })
+                        .error(function(data) {
+                                console.log('Error: ' + data);
+                        });
+        };        
+
         $scope.createReview = function() {
                 $http.post('/api/reviews', $scope.reviewData)
                         .success(function(data) {
                                 $scope.currReview = data;
+                                var paperStatusObj={
+                                    paperStatus: $scope.reviewData.forSubmission.status
+                                };
+                                $scope.updatePaperStatus($scope.reviewData.forSubmission._id,
+                                    paperStatusObj);
                                 $state.go('home.listMyReviews');
                         })
                         .error(function(data) {
@@ -76,6 +92,11 @@
                 $http.put('/api/reviews/' + id, $scope.reviewData)
                         .success(function(data) {
                                 $scope.currReview = data;
+                                var paperStatusObj={
+                                    paperStatus: $scope.reviewData.forSubmission.status
+                                };
+                                $scope.updatePaperStatus($scope.reviewData.forSubmission._id,
+                                    paperStatusObj);
                         })
                         .error(function(data) {
                                 console.log('Error: ' + data);
@@ -99,10 +120,18 @@
             return temp;
         };
 
+        $scope.globalErrFlag = false;
 
         $scope.prepCreateReview = function(){
 
-            $scope.reviewData.forSubmission = $scope.getObject();
+            if(($scope.reviewData.forSubmission.status != 'Accepted' 
+                && $scope.reviewData.forSubmission.status != 'Rejected')
+                || (typeof $scope.reviewData.reviewerExpertise == 'undefined')
+                || (typeof $scope.reviewData.overallEvaluation == 'undefined'))
+            {
+                $scope.globalErrFlag = true;
+                return;
+            }
             
             Users.searchById(currUserID)
                 .success(function(data) {

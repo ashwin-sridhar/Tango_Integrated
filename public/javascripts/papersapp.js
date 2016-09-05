@@ -69,6 +69,7 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
   
   var currUserID = auth.currentUserID();
   $scope.fileurl = "#";
+  $scope.globalErrFlag = false;
 
         $scope.getAllPapers = function(id) {
             $http.get('/api/papers')
@@ -116,12 +117,17 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
 
         $scope.updatePaper = function(id) {
                 //$scope.formData.updatedAt = Date.now;
-                if($scope.formData.title == null || $scope.formData.title ==""){
+                if(typeof $scope.formData.title == 'undefined' || $scope.formData.title == null 
+                    || $scope.formData.title =="")
+                {
+                    $scope.globalErrFlag = true;
                     return;
                 }
+
                 if(typeof $scope.paperfile != 'undefined' && $scope.paperfile != null){
                     $scope.formData.filename = $scope.paperfile.name;
                 }
+
                 $http.put('/api/papers/' + id, $scope.formData)
                         .success(function(data) {
                                 $scope.paper = data;
@@ -129,6 +135,7 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
                                     $scope.deleteFile(data._id);
                                     $scope.uploadFile($scope.paperfile,data._id);
                                 }
+                                $state.go('home.viewSub');
                         })
                         .error(function(data) {
                                 console.log('Error: ' + data);
@@ -272,12 +279,17 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
         }
 
         $scope.prepCreatePaper = function(){
-            if($scope.formData.title == null || $scope.formData.title ==""){
+            if(typeof $scope.formData.title == 'undefined' || $scope.formData.title == null 
+                || $scope.formData.title =="")
+            {
+                $scope.globalErrFlag = true;
                 return;
             }
+
             if(typeof $scope.paperfile != 'undefined' && $scope.paperfile != null){
                 $scope.formData.filename = $scope.paperfile.name;
             }
+
             Users.searchById(currUserID)
                 .success(function(data) {
                     // $scope.formData.creator = data._id;

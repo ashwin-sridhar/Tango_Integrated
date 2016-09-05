@@ -34,7 +34,7 @@
                         <!-- <form role="form"> -->
                         <form name="CreateSubForm" method="post" role="form" ng-controller="PapersCtrl" novalidate> <!-- class="form-horizontal" -->
                             
-                            <div class="form-group" ng-class="{'has-error' : CreateSubForm.ptitle.$invalid && !CreateSubForm.ptitle.$pristine }">
+                            <div class="form-group" ng-class="{'has-error' : CreateSubForm.ptitle.$invalid   && !CreateSubForm.ptitle.$pristine }">
 
                                 <label>Title*</label>
 
@@ -71,9 +71,9 @@
                                 <input type="file" ng-model="paperfile" name="paperfile" ngf-select="onFileSelect($files);">
                             </div>
 
-                            <!-- <p ng-show="CreateSubForm.$invalid" class="help-block" style="color:maroon">Please enter all the required* fields.</p> -->
+                            <p ng-show="CreateSubForm.$invalid && globalErrFlag" class="help-block" style="color:maroon">Please enter all the required* fields.</p>
 
-                            <button type="submit" name="submitBtn" class="btn btn-default" ng-disabled="CreateSubForm.$invalid" ng-click="prepCreatePaper();"> 
+                            <button type="submit" name="submitBtn" class="btn btn-default"  ng-click="prepCreatePaper();"> 
                             <!-- ui-sref="home.listMySubs" -->
                                 Submit
                             </button>

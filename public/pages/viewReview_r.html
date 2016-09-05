@@ -19,13 +19,14 @@
                         <!-- class="form-horizontal" -->
                         <!-- ng-init="review=getPaper();" -->
                         <div class="form-group">
-                            <label>Title</label>
+                            <label>Review for Paper</label>
                             <br>
                             {{reviewData.forSubmission.title}}
                         </div>
 
-                        <div class="form-group">
-                                <label>Reviewer Expertise:</label>
+                        <div class="panel panel-default form-group">
+                                <div class="panel-body">
+                                <label>Reviewer Expertise</label>
                                 <br>
                                     <div class="radio">
                                     <label>
@@ -53,9 +54,11 @@
                                     </label>
                                 </div>                                
                             </div>
+                            </div>
 
-                            <div class="form-group" disabled>
-                                <label>Overall Evaluation:</label>
+                            <div class="panel panel-default form-group">
+                                <div class="panel-body">
+                                <label>Overall Evaluation</label>
                                 <br>
                                     <div class="radio">
                                     <label>
@@ -83,7 +86,7 @@
                                     </label>
                                 </div>
                             </div>
-
+                            </div>
 
                             <div class="form-group">
                                 <label>Summary</label>
@@ -118,6 +121,24 @@
                                 <label>Conference</label>
                                 <br>
                                 ACM
+                            </div>
+
+                            <div class="panel panel-default form-group">
+                                <div class="panel-heading">
+                                    <label>Decision</label>
+                                </div>
+                                <div class="panel-body">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="paperStatus" id="paperStatusAccept" value="Accepted" ng-model="reviewData.forSubmission.status" disabled>Accept
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="paperStatus" id="paperStatusReject" value="Rejected" ng-model="reviewData.forSubmission.status" disabled>Reject
+                                    </label>
+                                </div>
+                            </div>
                             </div>
                             
                             <button type="submit" ui-sref="home.editReview" class="btn btn-default">Edit

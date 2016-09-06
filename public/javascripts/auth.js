@@ -88,6 +88,27 @@ angular.module('tango').controller('AuthCtrl', ['$scope','$state','auth','Deadli
 		auth.register($scope.user).error(function(error){
 		$scope.error="Username already exists";
 	}).then(function(){
+
+    // after registration+login, retrieve the deadlines from db
+      var datenow = new Date();
+      var submissionDeadlinePassed=false;
+      var reviewDeadlinePassed=false;
+
+      $http.get('/gatherConfData')
+          .success(function(data){
+            if(new Date(data[0].submissionDeadline) < datenow)
+              submissionDeadlinePassed=true;
+            if(new Date(data[0].reviewDeadline) < datenow)
+              reviewDeadlinePassed=true;
+
+            Deadlines.saveDeadlines(submissionDeadlinePassed,reviewDeadlinePassed);
+
+            console.log('Success!');
+          })
+          .error(function(data) {
+            console.log('Error: ' + data);
+          });
+
 		$state.go('home');
 	});
 	};

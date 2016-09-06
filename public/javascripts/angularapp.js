@@ -124,7 +124,8 @@ angular.module('tango', [
               name:'tango',
               files:[
                 
-              'javascripts/confhome.js'
+              'javascripts/confhome.js',
+              'javascripts/deadlines.js'
               
               ]
             })
@@ -289,7 +290,8 @@ angular.module('tango', [
               files:[
               
               'javascripts/angularapp.js',
-              'javascripts/auth.js'
+              'javascripts/auth.js',
+              'javascripts/deadlines.js'
               ]
             })
           }

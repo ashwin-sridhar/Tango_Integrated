@@ -55,7 +55,7 @@ angular.module('tango')
   ]);
 
 
-angular.module('tango').controller('ConfCtrl', ['$scope','$state','conference', function($scope,$state,conference){
+angular.module('tango').controller('ConfCtrl', ['$scope','$state','conference','Deadlines','$http', function($scope,$state,conference,Deadlines,$http){
   
   $scope.conference=conference.confs;
   $scope.possiblechairs=conference.possiblechairs;
@@ -68,8 +68,29 @@ angular.module('tango').controller('ConfCtrl', ['$scope','$state','conference', 
           conference.updateconfdata($scope.confdata,$scope.conference).error(function(error){
       $scope.error=error;
     }).then(function(){
+
+      // after updateconfdata, retrieve the deadlines from db
+      var datenow = new Date();
+      var submissionDeadlinePassed=false;
+      var reviewDeadlinePassed=false;
+
+      $http.get('/gatherConfData')
+          .success(function(data){
+            if(new Date(data[0].submissionDeadline) < datenow)
+              submissionDeadlinePassed=true;
+            if(new Date(data[0].reviewDeadline) < datenow)
+              reviewDeadlinePassed=true;
+
+            Deadlines.saveDeadlines(submissionDeadlinePassed,reviewDeadlinePassed);
+
+            console.log('Success!');
+          })
+          .error(function(data) {
+            console.log('Error: ' + data);
+          });
        
-      $state.go('home.dashboard');
+      //$state.go('home.dashboard');
+      $state.go('home.dashboard', {}, {reload: true});
     })
 
   };

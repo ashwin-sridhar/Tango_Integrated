@@ -15,7 +15,7 @@ angular.module('papersModule',['userModule','autocomplete','autocomp','ngFileUpl
     paper.getAllPapers = function(){
      return $http.get('/api/papers').success(function(data){
         console.log(data);
-      angular.copy(data,papers.paps);
+      angular.copy(data,paper.paps);
      });
   };
 
@@ -23,6 +23,20 @@ angular.module('papersModule',['userModule','autocomplete','autocomp','ngFileUpl
   paper.assignAReviewer=function(paperid,paperobj){
     return $http.put('/assignReviewer/'+paperid,paperobj);
   };
+
+  paper.getAllAuthors = function(){
+     return $http.get('/getAllAuthors').success(function(data){
+        console.log(data);
+      angular.copy(data,paper.paps);
+     });
+  };
+  paper.getAllReviewers = function(){
+     return $http.get('/getAllReviewers').success(function(data){
+        console.log(data);
+      angular.copy(data,paper.paps);
+     });
+  };
+  
     return paper;
   }
   ]);
@@ -65,7 +79,24 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
 
   };
  //as28tuge ends
-  
+  //Prashanth's part starts
+  $scope.papersForAuthors=paper.paps;
+  $scope.papersForReviewer=paper.paps;
+  $scope.getAllAuthors=function(){
+        paper.getAllAuthors().error(function(error){
+            $scope.error=error;
+        }).then(function(){
+            $state.go("home.authors");
+        })
+  };
+  $scope.getAllReviewers=function(){
+        paper.getAllReviewers().error(function(error){
+            $scope.error=error;
+        }).then(function(){
+            $state.go("home.reviewers");
+        })
+  };
+  //Prashanth's part ends
   
   var currUserID = auth.currentUserID();
   $scope.fileurl = "#";

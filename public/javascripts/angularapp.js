@@ -162,11 +162,45 @@ angular.module('tango', [
 
    .state('home.authors',{
      templateUrl:'pages/viewauthors.html',
-     url:'/viewauthors'
+     controller:'PapersCtrl',
+     url:'/viewauthors',
+     resolve:{
+        loadMyFiles:function($ocLazyLoad){
+          return $ocLazyLoad.load({
+            name:'papersModule',
+            files:[
+            'javascripts/papersapp.js',
+            'javascripts/Userapp.js',
+            'javascripts/auth.js',
+            'javascripts/autocomplete/autocomp.js',
+            'javascripts/autocomplete/autocomplete.js'
+
+            ]
+
+          })
+        }
+       }
  })
      .state('home.reviewers',{
        templateUrl:'pages/viewreviewers.html',
-       url:'/viewreviewers'
+       controller:'PapersCtrl',
+       url:'/viewreviewers',
+        resolve:{
+        loadMyFiles:function($ocLazyLoad){
+          return $ocLazyLoad.load({
+            name:'papersModule',
+            files:[
+            'javascripts/papersapp.js',
+            'javascripts/Userapp.js',
+            'javascripts/auth.js',
+            'javascripts/autocomplete/autocomp.js',
+            'javascripts/autocomplete/autocomplete.js'
+
+            ]
+
+          })
+        }
+       }
    })
      .state('home.reviews',{
        templateUrl:'pages/tempmodal.html',

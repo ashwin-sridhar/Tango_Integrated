@@ -287,4 +287,32 @@ router.delete('/api/deletefile/:paper_id', function(req, res) {
 });   
     //as28tuge code ends
 
+//Prashanth's part begins
+router.get('/getAllAuthors', function(req, res, next) {
+
+    Paper.find()
+        .populate('authors')
+        .exec(function(err, papers)
+        {
+            if (err)
+                res.send(err)
+
+            res.json(papers);
+        });
+
+});
+router.get('/getAllReviewers', function(req, res, next) {
+
+    Paper.find()
+        .populate('reviewer')
+        .exec(function(err, papers)
+        {
+            if (err)
+                res.send(err)
+
+            res.json(papers);
+        });
+
+});
+//Prashanth's part ends
 module.exports = router;

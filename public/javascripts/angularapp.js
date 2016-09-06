@@ -330,7 +330,8 @@ angular.module('tango', [
               'javascripts/autocomplete/autocomplete.js',
               'javascripts/autocomplete/autocomp.js',
               'javascripts/Userapp.js',
-              'javascripts/auth.js'
+              'javascripts/auth.js',
+              'stylesheets/autocomplete.css'
               ]
             })
           }
@@ -404,7 +405,8 @@ angular.module('tango', [
               'javascripts/autocomplete/autocomplete.js',
               'javascripts/autocomplete/autocomp.js',
               'javascripts/Userapp.js',
-              'javascripts/auth.js'
+              'javascripts/auth.js',
+              'stylesheets/autocomplete.css'
               ]
             })
           }

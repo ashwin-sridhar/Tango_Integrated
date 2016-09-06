@@ -70,14 +70,22 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
  
   $scope.assignReviewer=function(paperobj){
           
-          paper.assignAReviewer(paperobj._id,paperobj).error(function(error){
-      $scope.error=error;
-    }).then(function(){
-       
-      $state.reload();
-    })
+          paper.assignAReviewer(paperobj._id,paperobj).success(function(data){
+            console.log("Data from assigning"+data);
+            }).then(function(){
+                   $state.reload();
+    });
 
   };
+  $scope.getAllPapersForChair = function(){
+                $http.get('/api/papers').success(function(data) {
+                            console.log("Now"+data);
+                                $scope.mypapers = data;
+                        })
+                        .error(function(data) {
+                                console.log('Error: ' + data);
+                        });
+        };
  //as28tuge ends
   //Prashanth's part starts
   $scope.papersForAuthors=paper.paps;

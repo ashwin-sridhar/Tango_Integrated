@@ -157,9 +157,31 @@ angular.module('tango', [
        }
                      
    })
+     .state('home.allSubmissions',{
+       templateUrl:'pages/listAllSubs.html',
+       controller:'PapersCtrl',
+       url:'/viewallsubmissions',
+       resolve:{
+        loadMyFiles:function($ocLazyLoad){
+          return $ocLazyLoad.load({
+            name:'papersModule',
+            files:[
+            'javascripts/papersapp.js',
+            'javascripts/Userapp.js',
+            'javascripts/auth.js',
+            'javascripts/autocomplete/autocomp.js',
+            'javascripts/autocomplete/autocomplete.js'
+
+            ]
+
+          })
+        }
+       }
+                     
+   })     
 //Ashwin's part ends
      
-
+//Prashanth's parts starts
    .state('home.authors',{
      templateUrl:'pages/viewauthors.html',
      controller:'PapersCtrl',
@@ -202,11 +224,26 @@ angular.module('tango', [
         }
        }
    })
-     .state('home.reviews',{
-       templateUrl:'pages/tempmodal.html',
-       url:'/viewreviews'
-   })
-  
+      .state('home.reviews',{
+        templateUrl:'pages/viewallreviews.html',
+        url:'/listAllReviews',
+        controller:'ReviewsCtrl',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'reviewsModule',
+              files:[
+
+              'javascripts/main.js',
+              'javascripts/Userapp.js',
+              'javascripts/auth.js',
+              'javascripts/reviews_r.js'
+              ]
+            })
+          }
+        }
+    })
+     //Prashanth's part ends
   //Preethi's part starts
       .state('home.editprofile',{
         templateUrl:'pages/editprofile.html',

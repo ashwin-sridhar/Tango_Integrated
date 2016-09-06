@@ -154,7 +154,19 @@
                 .error(function(data) {
                     console.log('Error: ' + data);
                 });
-        }
+        };
+        //Prashanth's part starts
+         $scope.getAllReviews = function() {
+            $http.get('/getAllreviews')
+                .success(function(data) {
+                        $scope.allReviews = data;
+                        console.log($scope.allReviews);
+                })
+                .error(function(data) {
+                        console.log('Error: ' + data);
+                });
+        };
+        //Prashanth's part ends
 
 }]);
 

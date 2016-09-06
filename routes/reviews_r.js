@@ -121,5 +121,21 @@ var gfs = new Grid(mongoose.connection.db);
 		});
 	});
 
+    //Prashanth's part starts
+    router.get('/getAllreviews', function(req, res) {
+
+        // Review.find()
+        Review.find()
+        .populate('reviewer forSubmission')
+        .exec(function(err, reviews)
+        {
+            if (err)
+                res.send(err)
+
+            res.json(reviews);
+        });       
+    });
+    //Prashanth's part ends
+
 
 module.exports = router;

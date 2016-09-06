@@ -31,8 +31,8 @@
                             <tr>
                                
                                 <th>Name</th>
-                                <th>Initial Deadline</th>
-                                <th>Final Deadline</th>
+                                <th>Submission Deadline</th>
+                                <th>Review Deadline</th>
                                 <th></th>       
                                 
                                 
@@ -43,8 +43,8 @@
 
                                
                                 <td>{{con.confTitle}}</td>
-                                <td>{{con.initialDeadline|date:'medium'}}</td>
-                                <td>{{con.finalDeadline|date:'medium'}}</td>
+                                <td>{{con.submissionDeadline|date:'medium'}}</td>
+                                <td>{{con.reviewDeadline|date:'medium'}}</td>
                                 <td><button ng-click="getSingleConfdata(con._id)">Make changes</button></td>
 
                         </tr>    

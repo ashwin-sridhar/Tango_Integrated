@@ -69,10 +69,10 @@ router.put('/updateconfdata/:confid',function(req,res,next){
         //Conditions to ensure only changed data is updated so as to avoid null/wrong updates
         if(req.body.confTitle!=null)
         conference.confTitle=req.body.confTitle;
-        if(req.body.initialDeadline!=null)
-        conference.submissionDeadline=req.body.initialDeadline;
-        if(req.body.finalDeadline!=null)
-        conference.reviewDeadline=req.body.finalDeadline;
+        if(req.body.submissionDeadline!=null)
+        conference.submissionDeadline=req.body.submissionDeadline;
+        if(req.body.reviewDeadline!=null)
+        conference.reviewDeadline=req.body.reviewDeadline;
         if(req.body.chair!=null)
         conference.chairPerson.push(req.body.chair._id);
 

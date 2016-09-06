@@ -12,8 +12,8 @@ router.post('/createConf',function(req,res,next){
 	conf.confTitle="Test Conference";
 	conf.confDesc="Hope this works!";
 	conf.chairPerson="5721e043e44b1fd41010c220";
-	conf.initialDeadline=null;
-	conf.finalDeadline=null;
+	conf.submissionDeadline=null;
+	conf.reviewDeadline=null;
 	
 	
 
@@ -70,9 +70,9 @@ router.put('/updateconfdata/:confid',function(req,res,next){
         if(req.body.confTitle!=null)
         conference.confTitle=req.body.confTitle;
         if(req.body.initialDeadline!=null)
-        conference.initialDeadline=req.body.initialDeadline;
+        conference.submissionDeadline=req.body.initialDeadline;
         if(req.body.finalDeadline!=null)
-        conference.finalDeadline=req.body.finalDeadline;
+        conference.reviewDeadline=req.body.finalDeadline;
         if(req.body.chair!=null)
         conference.chairPerson.push(req.body.chair._id);
 

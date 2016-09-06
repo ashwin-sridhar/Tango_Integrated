@@ -5,8 +5,8 @@ var ConferenceSchema = new mongoose.Schema({
 	confTitle:String,
 	confDesc:String,
 	chairPerson:[{type:mongoose.Schema.Types.ObjectId, ref:'User'}],
-	initialDeadline:{type:Date},
-	finalDeadline:{type:Date}
+	submissionDeadline:{type:Date},
+	reviewDeadline:{type:Date}
 	
 
 });

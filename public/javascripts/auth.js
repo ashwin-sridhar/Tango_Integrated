@@ -82,7 +82,7 @@ angular.module('tango')
   ]);
 
 
-angular.module('tango').controller('AuthCtrl', ['$scope','$state','auth', function($scope,$state,auth){
+angular.module('tango').controller('AuthCtrl', ['$scope','$state','auth','Deadlines','$http', function($scope,$state,auth,Deadlines,$http){
 	$scope.user={};
 	$scope.register=function(){
 		auth.register($scope.user).error(function(error){
@@ -96,6 +96,27 @@ angular.module('tango').controller('AuthCtrl', ['$scope','$state','auth', functi
 			$scope.error="Enter Correct Details";
 		}).then(function(data){
       //$cookies.put("UID","iihgiehgui");
+
+      // after logging in, retrieve the deadlines from db
+      var datenow = new Date();
+      var submissionDeadlinePassed=false;
+      var reviewDeadlinePassed=false;
+
+      $http.get('/gatherConfData')
+          .success(function(data){
+            if(new Date(data[0].submissionDeadline) < datenow)
+              submissionDeadlinePassed=true;
+            if(new Date(data[0].reviewDeadline) < datenow)
+              reviewDeadlinePassed=true;
+
+            Deadlines.saveDeadlines(submissionDeadlinePassed,reviewDeadlinePassed);
+
+            console.log('Success!');
+          })
+          .error(function(data) {
+            console.log('Error: ' + data);
+          });
+
       $state.go('home');
 		})
 	};

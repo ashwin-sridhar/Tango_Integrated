@@ -84,7 +84,9 @@
                                     {{paper.filename}}
                                 </a>
                             </div>
-                            <button type="submit" ui-sref="home.editSub" class="btn btn-default">Edit
+                            <button type="submit" ng-show="!submissionDeadlinePassed;" ui-sref="home.editSub" class="btn btn-default">Edit
+                            </button>
+                            <button type="submit" ng-show="submissionDeadlinePassed;" ui-sref="home.XSub" class="btn btn-default">Edit
                             </button>
                                 <button ng-click="deletePaper(paper._id);" class="btn btn-default">
                                     Withdraw

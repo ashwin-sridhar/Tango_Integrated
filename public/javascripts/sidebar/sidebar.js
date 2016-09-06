@@ -8,14 +8,14 @@
  */
 
 angular.module('tango')
-  .directive('sidebar',['$location','$http','auth',function() {
+  .directive('sidebar',['$location','$http','auth','Deadlines',function() {
     return {
       templateUrl:'javascripts/sidebar/sidebar.html',
       restrict: 'E',
       replace: true,
       scope: {
       },
-      controller:function($scope,$http,auth){
+      controller:function($scope,$http,auth,Deadlines){
         var loggedInUser=auth.currentUserID();
         console.log(loggedInUser); 
         $scope.isChairman=false;
@@ -44,6 +44,10 @@ angular.module('tango')
           else
             $scope.multiCollapseVar = y;
         };
+
+      $scope.submissionDeadlinePassed = Deadlines.subDLPassed();
+      $scope.reviewDeadlinePassed = Deadlines.reviewDLPassed();
+
       }
     }
   }]);

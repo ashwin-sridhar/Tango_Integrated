@@ -84,7 +84,9 @@
                                     {{sub.filename}}
                                 </a>
                             </div>
-                            <button type="submit" ui-sref="home.createReview" class="btn btn-default">Review
+                            <button type="submit" ng-show="!reviewDeadlinePassed" ui-sref="home.createReview" class="btn btn-default">Review
+                            </button>
+                            <button type="submit" ng-show="reviewDeadlinePassed" ui-sref="home.XReview" class="btn btn-default">Review
                             </button>
                             <button type="back" ui-sref="home.listAssignedSubs" class="btn btn-default">Back</button>
                         </form>

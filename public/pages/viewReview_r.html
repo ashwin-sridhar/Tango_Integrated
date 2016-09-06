@@ -141,8 +141,11 @@
                             </div>
                             </div>
                             
-                            <button type="submit" ui-sref="home.editReview" class="btn btn-default">Edit
+                            <button type="submit" ng-show="!reviewDeadlinePassed" ui-sref="home.editReview" class="btn btn-default">Edit
                             </button>
+                            <button type="submit" ng-show="reviewDeadlinePassed" ui-sref="home.XReview" class="btn btn-default">Edit
+                            </button>
+
                             <button type="back" ui-sref="home.listMyReviews" class="btn btn-default">Back</button>
                         </form>
                     </div>

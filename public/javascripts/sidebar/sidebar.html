@@ -42,7 +42,8 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level" collapse="collapseVar!=2">
                     <li ng-class="{active: selectedMenu=='blank'}">
-                        <a ui-sref="home.createSub" ng-click="selectedMenu='blank'">New Submission</a>
+                        <a ng-show="!submissionDeadlinePassed;" ui-sref="home.createSub" ng-click="selectedMenu='blank'">New Submission</a>
+                        <a ng-show="submissionDeadlinePassed;" ui-sref="home.XSub" ng-click="selectedMenu='blank'">New Submission</a>
                     </li>
                     <li>
                         <a ui-sref="home.listMySubs">View My Submissions</a>

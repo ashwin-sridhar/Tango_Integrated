@@ -42,7 +42,7 @@ angular.module('papersModule',['userModule','autocomplete','autocomp','ngFileUpl
   ]);
 
 
-angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$http','$rootScope','ObjectRetriever','auth','Upload','$timeout','Users','paper',function($scope,$state,$http,$rootScope,ObjectRetriever,auth,Upload,$timeout,Users,paper){
+angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$http','$rootScope','ObjectRetriever','auth','Upload','$timeout','Users','paper','Deadlines',function($scope,$state,$http,$rootScope,ObjectRetriever,auth,Upload,$timeout,Users,paper,Deadlines){
   
   //as28tuge starts
   $scope.assignData={};
@@ -101,6 +101,8 @@ angular.module('papersModule').controller('PapersCtrl', ['$scope','$state','$htt
   var currUserID = auth.currentUserID();
   $scope.fileurl = "#";
   $scope.globalErrFlag = false;
+  $scope.submissionDeadlinePassed = Deadlines.subDLPassed();
+  $scope.reviewDeadlinePassed = Deadlines.reviewDLPassed();
 
         $scope.getAllPapers = function(id) {
             $http.get('/api/papers')

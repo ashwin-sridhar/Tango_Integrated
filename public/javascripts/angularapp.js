@@ -269,7 +269,8 @@ angular.module('tango', [
               files:[
               
               'javascripts/angularApp.js',
-              'javascripts/auth.js'
+              'javascripts/auth.js',
+              'javascripts/deadlines.js'
               ]
             })
           }
@@ -297,6 +298,11 @@ angular.module('tango', [
             })
           }
         }
+   })
+
+    .state('home.XSub',{
+       templateUrl:'pages/XSub.html',
+       url:'/XSub'
    })
 
       .state('home.listMySubs',{
@@ -339,7 +345,8 @@ angular.module('tango', [
               'javascripts/autocomplete/autocomplete.js',
               'javascripts/autocomplete/autocomp.js',
               'javascripts/Userapp.js',
-              'javascripts/auth.js'
+              'javascripts/auth.js',
+              'javascripts/deadlines.js'
               ]
             })
           }
@@ -402,7 +409,8 @@ angular.module('tango', [
               'javascripts/main.js',
               'javascripts/Userapp.js',
               'javascripts/auth.js',
-              'javascripts/reviews_r.js'
+              'javascripts/reviews_r.js',
+              'javascripts/deadlines.js'
               ]
             })
           }
@@ -427,6 +435,11 @@ angular.module('tango', [
             })
           }
         }
+    })
+
+      .state('home.XReview',{
+        templateUrl:'pages/XReview_r.html',
+        url:'/XReview'
     })
 
       .state('home.listMyReviews',{
@@ -462,7 +475,8 @@ angular.module('tango', [
               'javascripts/main.js',
               'javascripts/Userapp.js',
               'javascripts/auth.js',
-              'javascripts/reviews_r.js'
+              'javascripts/reviews_r.js',
+              'javascripts/deadlines.js'
               ]
             })
           }

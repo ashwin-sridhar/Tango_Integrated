@@ -14,11 +14,13 @@
 
   angular.module('reviewsModule',['tango','userModule'])
 
-  .controller('ReviewsCtrl', ['$scope','$http','$rootScope','auth','Users','$state',
-    function($scope,$http,$rootScope,auth,Users,$state){
+  .controller('ReviewsCtrl', ['$scope','$http','$rootScope','auth','Users','$state','Deadlines',
+    function($scope,$http,$rootScope,auth,Users,$state,Deadlines){
   
   var currUserID = auth.currentUserID();
   $scope.fileurl = "#";
+  $scope.submissionDeadlinePassed = Deadlines.subDLPassed();
+  $scope.reviewDeadlinePassed = Deadlines.reviewDLPassed();
 
         $scope.getAssignedSubs = function(id) {
             $http.get('/api/assignedsubs/' + currUserID)

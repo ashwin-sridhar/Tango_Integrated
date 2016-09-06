@@ -1,6 +1,6 @@
  
 
-  <script src='https://code.angularjs.org/1.4.3/angular-messages.js'></script> 
+ 
   <div class="login-branding" height="30px"><button type="button" class="btn btn-primary btn-lg btn-block btn-success">Conference Management</button></div>
 
 
@@ -32,7 +32,7 @@
                             <!-- <a ui-sref="home.dashboard" class="btn btn-lg btn-success btn-block">Sign in</a> -->
                         </fieldset>
 						<span ng-bind="error" style="color:red"></span>
-						<div ng-messages = "Loginform.username.$error" || "Loginform.password.$error" role="alert">
+						<div ng-show = "Loginform.username.$error" || "Loginform.password.$error" role="alert">
 						</div>
                     </form>
                 </div>

@@ -86,7 +86,11 @@ angular.module('tango').controller('AuthCtrl', ['$scope','$state','auth','Deadli
 	$scope.user={};
 	$scope.register=function(){
 		auth.register($scope.user).error(function(error){
-		$scope.error="Username already exists";
+      if(typeof error.status != 'undefined' && error.status == '400') // Bad request error
+        $scope.error="Please enter all the fields correctly";
+      else {  
+		    $scope.error="Username/Email already exists. Username and Email must be unique.";
+      }
 	}).then(function(){
 
     // after registration+login, retrieve the deadlines from db

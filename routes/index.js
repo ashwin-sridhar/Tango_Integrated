@@ -16,7 +16,7 @@ router.get('/home',function(req,res){
 router.post('/register',function(req,res,next){
 	
 	if(!req.body.username||!req.body.password||!req.body.firstname||!req.body.lastname||!req.body.mob||!req.body.email||!req.body.organization){
-		return res.status(400).json({userpass:'$req.body.username',message:'Please fill all the fields'});
+		return res.status(400).json({userpass:'$req.body.username',message:'Please fill all the fields',status:'400'});
 
 	}
 	var user=new User();

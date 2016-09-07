@@ -1,10 +1,10 @@
 'use strict';
 /**
  * @ngdoc function
- * @name aromeo.controller:MainCtrl
+ * @name tango.controller:UserpwdCtrl
  * @description
- * # MainCtrl
- * Controller of the Agileromeo app
+ * # UserPwdCtrl
+ * User password Controller of the tangoconf app
  */
  var app = angular.module('userModule',['tango']);
  // angular.module('tango',[])
